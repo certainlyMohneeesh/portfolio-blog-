@@ -134,17 +134,19 @@ export default function HomeGrid({  setCurrentGrid ,animatedStyles }) {
       <Resume />
     </animated.div>
   </animated.div>
-
-  {/* Contact */}
-  <animated.div style={animatedStyles} className='md:row-span-3 md:col-span-5'>
-    <animated.div style={{
-      ...trails[4],
-      clipPath: 'polygon(2% 0, 100% 5%, 98% 100%, 0 95%)'
-    }} className='manga-panel h-full w-full md:flex justify-between items-center p-10 gap-5 border-4 border-black'>
-      <div className='speed-lines-burst'></div>
+  
+{ /* Contact */}
+  <animated.div style={animatedStyles} className='row-span-2 md:row-span-3 col-span-full md:col-span-5'>
+  <animated.div style={{
+    ...trails[4],
+    clipPath: 'polygon(2% 0, 100% 5%, 98% 100%, 0 95%)'
+  }} className='manga-panel h-full w-full flex flex-col md:flex-row justify-between items-center p-4 md:p-10 gap-3 md:gap-5 border-4 border-black'>
+    <div className='speed-lines-burst w-full md:w-auto'></div>
+    <div className='w-full md:w-auto'>
       <Contact />
-    </animated.div>
+    </div>
   </animated.div>
+</animated.div>
 
   {/* Misc */}
   <animated.div style={animatedStyles} className='md:row-span-2 md:col-span-2'>
