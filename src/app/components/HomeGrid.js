@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useTrail, animated, easings } from "@react-spring/web"
-
+import { GRIDS } from "../constants"
 import WorkExperience from "./WorkExperience"
 import Projects from "./Projects"
 import Education from "./Education"
@@ -8,9 +8,8 @@ import Resume from "./Resume"
 import Blog from "./Blog"
 import Contact from "./Contact"
 import Misc from "./Misc"
-import { GRIDS } from "../constants"
 
-export default function HomeGrid({ setCurrentGrid, animatedStyles }) {
+export default function HomeGrid({  setCurrentGrid ,animatedStyles }) {
   const [nameIdx, setNameIdx] = useState(0)
   const name = "Mohneesh".split("")
   const [subheadingIdx, setSubheadingIdx] = useState(0)
@@ -25,7 +24,7 @@ export default function HomeGrid({ setCurrentGrid, animatedStyles }) {
       if (subheadingIdx < subheading.length) {
         setSubheadingIdx(subheadingIdx + 1)
       }
-    }, 100)
+    }, 150)
 
     return () => {
       clearInterval(id)
@@ -33,14 +32,12 @@ export default function HomeGrid({ setCurrentGrid, animatedStyles }) {
   })
 
   const trails = useTrail(7, {
-    from: { scale: 0 },
-    to: { scale: 1 },
-    leave: { scale: 1 },
-    config: {
-      easing: easings.easeInBack,
-      delay: 300,
-    },
-  })
+    from: { x: 100, opacity: 0 },
+    to: { x: 0, opacity: 1 },
+    config: { mass: 1, tension: 280, friction: 60 },
+  immediate: false
+})
+
 
   
 
@@ -58,7 +55,9 @@ export default function HomeGrid({ setCurrentGrid, animatedStyles }) {
     zIndex: 10
   }}/>
    {/* Work Experience Panel */}
-   <animated.div style={animatedStyles} className='row-start-5 md:row-span-6 md:col-span-3'>
+   <animated.div style={animatedStyles} className='row-start-5 md:row-span-6 md:col-span-3'
+   onClick={() => setCurrentGrid(GRIDS[2])}
+   >
     <animated.div style={{
       ...trails[1],
       clipPath: 'polygon(0 0, 100% 3%, 97% 100%, 3% 97%)'
@@ -69,7 +68,9 @@ export default function HomeGrid({ setCurrentGrid, animatedStyles }) {
   </animated.div>
 
   {/* Projects */}
-  <animated.div style={animatedStyles} className='md:row-span-3 md:col-span-3'>
+  <animated.div style={animatedStyles} className='md:row-span-3 md:col-span-3'
+  onClick={() => setCurrentGrid(GRIDS[1])}
+  >
     <animated.div style={{
       ...trails[3],
       clipPath: 'polygon(3% 0, 97% 3%, 100% 97%, 0 100%)'
@@ -109,7 +110,9 @@ export default function HomeGrid({ setCurrentGrid, animatedStyles }) {
       </animated.div>
 
   {/* Blog */}
-  <animated.div style={animatedStyles} className='md:row-span-4 md:col-span-2'>
+  <animated.div style={animatedStyles} className='md:row-span-4 md:col-span-2'
+  onClick={() => window.open('https://blog.cyth.me', '_blank')}
+  >
     <animated.div style={{
       ...trails[4],
       clipPath: 'polygon(0 3%, 100% 0, 97% 100%, 3% 95%)'
@@ -120,7 +123,9 @@ export default function HomeGrid({ setCurrentGrid, animatedStyles }) {
   </animated.div>
 
   {/* Resume */}
-  <animated.div style={animatedStyles} className='md:row-span-3 md:col-span-2'>
+  <animated.div style={animatedStyles} className='md:row-span-3 md:col-span-2'
+  onClick={() => window.open('/resume.pdf', '_blank')}
+  >
     <animated.div style={{
       ...trails[5],
       clipPath: 'polygon(5% 0, 98% 2%, 100% 98%, 2% 100%)'

@@ -5,10 +5,8 @@ import { GRIDS } from "../constants"
 export default function ProjectsGrid({ setCurrentGrid, animatedStyles }) {
   const [nameIdx, setNameIdx] = useState(0)
   const name = "Projects".split("")
-
   const [subheadingIdx, setSubheadingIdx] = useState(0)
-  const subheading =
-    "Here are a few personal projects I've worked on over the years".split("")
+  const subheading = "Here are a few personal projects I've worked on over the years".split("")
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -18,7 +16,7 @@ export default function ProjectsGrid({ setCurrentGrid, animatedStyles }) {
       if (subheadingIdx < subheading.length) {
         setSubheadingIdx(subheadingIdx + 1)
       }
-    }, 100)
+    }, 150)
 
     return () => {
       clearInterval(id)
@@ -26,100 +24,82 @@ export default function ProjectsGrid({ setCurrentGrid, animatedStyles }) {
   })
 
   const trails = useTrail(7, {
-    from: { scale: 0 },
-    to: { scale: 1 },
-    leave: { scale: 1 },
-    config: {
-      easing: easings.easeInBack,
-      delay: 300,
-    },
+    from: { x: 100, opacity: 0 },
+    to: { x: 0, opacity: 1 },
+    config: { mass: 1, tension: 280, friction: 60 }
   })
 
   return (
-    <animated.div className='grid grid-cols-1 lg:grid-cols-9 lg:grid-rows-9 w-screen lg:h-screen p-5 gap-5 bg-stone-200'>
-      <animated.div
-        style={animatedStyles}
-        className='row-start-4 lg:row-span-3 lg:col-span-5'
-      >
-        <animated.div
-          style={trails[1]}
-          className='w-full h-full bg-[#A7C957] border border-black'
-        ></animated.div>
-      </animated.div>
+    <animated.div className='grid grid-cols-1 md:grid-cols-9 md:grid-rows-9 w-screen md:h-screen p-5 gap-5 bg-white relative'>
+      {/* Manga Panel Lines Overlay */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        backgroundImage: `
+          linear-gradient(135deg, black 0.5px, transparent 1px),
+          linear-gradient(45deg, black 0.5px, transparent 1px)
+        `,
+        backgroundSize: '40px 40px',
+        opacity: 0.1,
+        zIndex: 10
+      }}/>
 
-      <animated.div
-        style={animatedStyles}
-        className='lg:row-span-3 lg:col-span-4'
-      >
-        <animated.div
-          style={trails[3]}
-          className='w-full h-full relative bg-[#BC4749] border border-black'
-        ></animated.div>
-      </animated.div>
-
-      <animated.div
-        style={animatedStyles}
-        className='lg:col-span-3 lg:row-span-6'
-      >
-        <animated.div
-          style={trails[2]}
-          className='w-full h-full relative bg-[#6A994E] border border-neutral-900'
-        ></animated.div>
-      </animated.div>
-
-      <animated.div
-        style={animatedStyles}
-        onClick={() => setCurrentGrid(GRIDS[0])}
-        className='row-start-1 lg:col-span-3 lg:row-span-3'
-      >
-        <animated.div
-          style={trails[0]}
-          className='w-full h-full p-10 bg-[#386641] border border-black flex flex-col items-center justify-center gap-3'
-        >
-          <div className='border border-neutral-900 bg-[#F2E8CF] w-fit px-5 py-3'>
-            <span className='text-5xl font-bold text-[#BC4749]' id='home'>
+      {/* Title Panel */}
+      <animated.div style={animatedStyles} className='row-start-1 md:col-span-4 md:row-span-3'>
+        <animated.div style={trails[0]} className='manga-panel h-full w-full p-10 border-4 border-black flex flex-col items-center justify-center gap-3 transform -skew-y-2'>
+          <div className='manga-text-bubble'>
+            <span className='text-5xl font-bold text-black'>
               {name.slice(0, nameIdx).join("")}
-              <span className='inline-block mx-2 w-6 h-1 bg-[#2A9D8F] animate-pulse'></span>
+              <span className='inline-block mx-2 w-6 h-1 bg-black animate-pulse'></span>
             </span>
           </div>
-          <div className='border text-center border-neutral-900 bg-[#F2E8CF] w-fit px-5 py-2'>
-            <span className='lg:text-md text-[#BC4749]'>
+          <div className='manga-subtitle'>
+            <span className='md:text-md text-black'>
               {subheading.slice(0, subheadingIdx).join("")}
-              <span className='inline-block w-3 h-0.5 mx-1 bg-[#2A9D8F] animate-pulse'></span>
+              <span className='inline-block w-3 h-0.5 mx-1 bg-black animate-pulse'></span>
             </span>
           </div>
         </animated.div>
       </animated.div>
 
-      <animated.div
-        style={animatedStyles}
-        className='lg:row-span-3 lg:col-span-3'
-      >
-        <animated.div
-          style={trails[4]}
-          className='w-full h-full relative bg-[#6A994E] border border-neutral-900'
-        ></animated.div>
+            {/* FarmWise Project */}
+      <animated.div style={animatedStyles} className='md:row-span-3 md:col-span-5'>
+        <animated.div style={trails[1]} className='manga-panel h-full w-full p-6 border-4 border-black cursor-pointer hover:bg-gray-50 transition-colors'>
+          <a href="https://github.com/certainlyMohneeesh/FarmWise" target="_blank" rel="noopener noreferrer">
+            <h2 className="text-2xl font-bold mb-2 text-black">FarmWise</h2>
+            <p className="text-lg text-black">Crop disease prediction and cure using ConVNEXT and GCN</p>
+          </a>
+        </animated.div>
       </animated.div>
 
-      <animated.div
-        style={animatedStyles}
-        className='lg:row-span-3 lg:col-span-4'
-      >
-        <animated.div
-          style={trails[5]}
-          className='w-full h-full relative bg-[#BC4749] border border-neutral-900'
-        ></animated.div>
+      {/* MySchedule Project */}
+      <animated.div style={animatedStyles} className='md:row-span-3 md:col-span-4'>
+        <animated.div style={trails[2]} className='manga-panel h-full w-full p-6 border-4 border-black cursor-pointer hover:bg-gray-50 transition-colors'>
+          <a href="https://scheduler-calendar.vercel.app" target="_blank" rel="noopener noreferrer">
+            <h2 className="text-2xl font-bold mb-2 text-black">MySchedule</h2>
+            <p className="text-lg text-black">A scheduling platform to plan your days, organize meetings, and stay on top of your schedule</p>
+          </a>
+        </animated.div>
       </animated.div>
 
-      <animated.div
-        style={animatedStyles}
-        className='lg:row-span-3 lg:col-span-2'
-      >
-        <animated.div
-          style={trails[4]}
-          className='w-full h-full lg:flex justify-between items-center p-10 gap-5 bg-[#A7C957] border border-black'
-        ></animated.div>
+      {/* Task Manager Project */}
+      <animated.div style={animatedStyles} className='md:row-span-3 md:col-span-5'>
+        <animated.div style={trails[3]} className='manga-panel h-full w-full p-6 border-4 border-black cursor-pointer hover:bg-gray-50 transition-colors'>
+          <a href="https://tskman.cyth.me" target="_blank" rel="noopener noreferrer">
+            <h2 className="text-2xl font-bold mb-2 text-black">Task Manager</h2>
+            <p className="text-lg text-black">A modern feature-rich task management application</p>
+          </a>
+        </animated.div>
       </animated.div>
+
+      {/* Vaulty Project */}
+      <animated.div style={animatedStyles} className='md:row-span-3 md:col-span-4'>
+        <animated.div style={trails[4]} className='manga-panel h-full w-full p-6 border-4 border-black cursor-pointer hover:bg-gray-50 transition-colors'>
+          <a href="https://vaulty-omega.vercel.app/sign-in" target="_blank" rel="noopener noreferrer">
+            <h2 className="text-2xl font-bold mb-2 text-black">Vaulty</h2>
+            <p className="text-lg text-black">A financial management application</p>
+          </a>
+        </animated.div>
+      </animated.div>
+
     </animated.div>
   )
 }

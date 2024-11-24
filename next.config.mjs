@@ -14,7 +14,7 @@ const nextConfig = {
         return config
       },
       experimental: {
-        largePageDataBytes: 800 * 1000, // Increases the limit to 800KB
+        largePageDataBytes: 1024 * 1000, // Increases the limit to 800KB
       }
 };
 
