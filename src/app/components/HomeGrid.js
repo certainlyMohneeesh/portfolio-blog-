@@ -13,7 +13,7 @@ export default function HomeGrid({  setCurrentGrid ,animatedStyles }) {
   const [nameIdx, setNameIdx] = useState(0)
   const name = "Mohneesh".split("")
   const [subheadingIdx, setSubheadingIdx] = useState(0)
-  const subheading = "Creative Web Developer, Sometimes a cook".split("")
+  const subheading = "Creative Web Developer, Sometimes a cook. Click on my name to know more".split("")
   const [panelOrder, setPanelOrder] = useState([])
 
   useEffect(() => {
@@ -92,7 +92,10 @@ export default function HomeGrid({  setCurrentGrid ,animatedStyles }) {
   </animated.div>
 
   {/* Hero/Name Section */}
-  <animated.div style={animatedStyles} className='row-start-1 md:col-span-4 md:row-span-3'>
+  <animated.div style={animatedStyles} className='row-start-1 md:col-span-4 md:row-span-3'
+  onClick={() => window.open('https://www.cyth.me', '_blank')}
+  >
+  
         <animated.div style={trails[0]} className='manga-panel h-full w-full p-10 border-4 border-black flex flex-col items-center justify-center gap-3 transform -skew-y-2'>
           <div className='manga-text-bubble'>
             <span className='text-5xl font-bold text-black' id='home'>

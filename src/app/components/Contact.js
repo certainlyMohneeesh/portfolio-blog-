@@ -16,7 +16,6 @@ function BlackIconWrapper({ icon, ...rest }) {
       icon={icon}
       bgColor='bg-black'
       textColor='text-white'
-
       {...rest}
     />
   )
@@ -83,15 +82,3 @@ export default function Contact() {
     </div>
   )
 }
-
-function IconWrapper({ icon, bgColor, textColor, target, isEmail }) {
-  return (
-    <a
-      href={isEmail ? `mailto:${target}` : target}
-      className={`w-12 h-12 sm:w-16 sm:h-16 md:w-14 md:h-14 lg:w-20 lg:h-20 ${bgColor} flex items-center justify-center text-xl sm:text-2xl md:text-3xl transition-all hover:text-4xl cursor-pointer border border-black`}
-    >
-      <FontAwesomeIcon icon={icon} className={textColor} />
-    </a>
-  )
-}
-
