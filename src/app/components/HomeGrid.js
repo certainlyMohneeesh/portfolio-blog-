@@ -93,7 +93,7 @@ export default function HomeGrid({  setCurrentGrid ,animatedStyles }) {
 
   {/* Hero/Name Section */}
   <animated.div style={animatedStyles} className='row-start-1 md:col-span-4 md:row-span-3'
-  onClick={() => window.open('https://www.cyth.me', '_blank')}
+  onClick={() => window.open('https://cythical.cyth.me', '_blank')}
   >
   
         <animated.div style={trails[0]} className='manga-panel h-full w-full p-10 border-4 border-black flex flex-col items-center justify-center gap-3 transform -skew-y-2'>
