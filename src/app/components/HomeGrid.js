@@ -127,7 +127,7 @@ export default function HomeGrid({  setCurrentGrid ,animatedStyles }) {
 
   {/* Resume */}
   <animated.div style={animatedStyles} className='md:row-span-3 md:col-span-2'
-  onClick={() => window.open('/resume.pdf', '_blank')}
+  onClick={() => window.open('/Mohneesh_resume.pdf', '_blank')}
   >
     <animated.div style={{
       ...trails[5],
