@@ -82,6 +82,7 @@ export default function HomeGrid({  setCurrentGrid ,animatedStyles }) {
 
   {/* Education */}
   <animated.div style={animatedStyles} className='md:col-span-3 md:row-span-3'>
+  onClick={() => setCurrentGrid(GRIDS[3])}
     <animated.div style={{
       ...trails[2],
       clipPath: 'polygon(5% 2%, 98% 0, 95% 98%, 0 100%)'
